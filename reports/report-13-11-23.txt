@@ -1,0 +1,21 @@
+re	Здрасти! Вчера Марто ми показа офиса и ми изясни задачата, по която ще работя. Разбрах какво да правя и започнах да чета. 
+Останалото време от деня прекарах в разучаване на технологиите:
+
+От microsoft документация извличах главно информация
+
+https://learn.microsoft.com/en-us/microsoftteams/platform/mstdd-landing?view=msteams-client-js-latest
+
+Научих за SDK, дев кита, който се ползва за имплементиране на готово уеб приложение в тиймс.
+
+https://learn.microsoft.com/en-us/microsoftteams/platform/concepts/build-and-test/tool-sdk-overview
+
+От там намерих това репо със сампъл проекти, които обстойно разгледах, за да разбера как точно се имплементира SDK
+
+https://github.com/OfficeDev/Microsoft-Teams-Samples.git
+
+Научих, че главното нещо, правещо връзката са тези manifest-scheme json-и
+
+https://learn.microsoft.com/en-us/microsoftteams/platform/resources/schema/manifest-schema
+
+	
+
