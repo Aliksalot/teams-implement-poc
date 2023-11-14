@@ -1,6 +1,0 @@
-	Днес ще се пробвам да направя един proof of concept, създавайки nodejs приложение, разучавайки как може да се направи добра абстрактна имплементация към тиймс и дали неща
-като http, заявки към mongodb и event listener-и си работят нормално.
-	
-	От този линк, както и директна работа с тиймс, разбрах, че ще ми е нужен MS 365 Developer Program абонамент, какъвто аз нямам, за да мога да тествам каквото и да е приложение.
-
-https://learn.microsoft.com/en-us/microsoftteams/platform/concepts/build-and-test/prepare-your-o365-tenant

@@ -1,0 +1,37 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.10/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.10",
+    "id": "your-app-id",
+    "version": "1.0.0",
+    "packageName": "com.example.teamsapp",
+    "developer": {
+      "name": "AuxCode",
+      "websiteUrl": "https://auxcode.com/",
+      "privacyUrl": "https://auxcode.com/privacy/",
+      "termsOfUseUrl": "https://auxcode.com/terms-of-use/"
+    },
+    "name": {
+      "short": "MS teams app test",
+      "full": "Proof of concept about usual web app functions"
+    },
+    "description": {
+        "short": "MS teams app test",
+        "full": "Proof of concept about usual web app functions"
+    },
+    "icons": {
+      "outline": "icon.png",
+      "color": "icon.png"
+    },
+    "accentColor": "#00bfff",
+    "configurableTabs": [],
+    "staticTabs": [
+      {
+        "entityId": "firstTab",
+        "name": "First",
+        "contentUrl": "",
+        "scopes": ["personal"]
+      }
+    ],
+    "permissions": ["identity"]
+  }
+  
