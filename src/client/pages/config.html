@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Config
+    </title>
+
+</head>
+<body>
+    <h1>CONFIG PAGE :)</h1>
+    <button id = 'init-button'>Click me!</button>
+</body>
+</html>
+
+<script 
+src="https://res.cdn.office.net/teams-js/2.10.1/js/MicrosoftTeams.min.js"
+integrity="sha384-Tc1x2xjzm4vRqLV4l416qPm+i7t8ujpxrioZEjRCNP7g/gQNDW41TB1SpVkQxowY"
+crossorigin="anonymous"
+></script>
+
+<script type = 'module'>
+    await microsoftTeams.app.initialize()
+    console.log('HELLO WORLD')
+    function setTheme(theme) {
+        if (theme) {        
+            document.body.className =
+                'theme-' + (theme === 'default' ? 'light' : theme);
+        }
+    }
+
+    microsoftTeams.getContext(function (context) {
+        if (context && context.theme) {
+            setTheme(context.theme);
+        }
+    });
+    
+    microsoftTeams.registerOnThemeChangeHandler(function (theme) {
+        setTheme(theme);
+    });
+
+    const init = () => {
+        microsoftTeams.pages.config.setValidityState(true)
+
+        microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+            const configPromise = microsoftTeams.pages.config.setConfig({
+                websiteUrl:"https://a194-2a01-5a8-303-43dd-ada6-5b14-8426-7e3d.ngrok-free.app/home",
+                contentUrl:"https://a194-2a01-5a8-303-43dd-ada6-5b14-8426-7e3d.ngrok-free.app/home",
+                entityId:"https://a194-2a01-5a8-303-43dd-ada6-5b14-8426-7e3d.ngrok-free.app/home"
+            })
+
+            configPromise.then((result) => {
+                saveEvent.notifySuccess()
+            }).catch(error => {
+                console.log(error)
+                saveEvent.notifyFailure('Fail occured ;/', error)
+            })
+       })
+    }
+
+    document.getElementById('init-button').addEventListener('click', init)
+</script>

@@ -4,7 +4,12 @@ const getData = (req, res) => {
     res.send({city: 'Sofia'})
 }
 
+const sendData = (req, res) => {
+    console.log(req.body)
+}
+
 module.exports = 
 {
-    getData
+    getData,
+    sendData
 }
