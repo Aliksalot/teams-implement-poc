@@ -1,14 +1,14 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.10/MicrosoftTeams.schema.json",
     "manifestVersion": "1.10",
-    "id": "your-app-id",
+    "id": "d0991bb0-5676-4e1a-8282-f87d362e0eab",
     "version": "1.0.0",
-    "packageName": "com.example.teamsapp",
+    "packageName": "com.aliksalot.testapp",
     "developer": {
-      "name": "AuxCode",
-      "websiteUrl": "https://auxcode.com/",
-      "privacyUrl": "https://auxcode.com/privacy/",
-      "termsOfUseUrl": "https://auxcode.com/terms-of-use/"
+      "name": "Aliksalot",
+      "websiteUrl": "https://www.microsoft.com",
+      "privacyUrl": "https://www.microsoft.com/privacy",
+      "termsOfUseUrl": "https://www.microsoft.com/termsofuse"
     },
     "name": {
       "short": "MS teams app test",
@@ -19,19 +19,26 @@
         "full": "Proof of concept about usual web app functions"
     },
     "icons": {
-      "outline": "icon.png",
-      "color": "icon.png"
+      "color": "color.png",
+      "outline": "outline.png"
     },
+
     "accentColor": "#00bfff",
-    "configurableTabs": [],
-    "staticTabs": [
+    "configurableTabs": [
       {
-        "entityId": "firstTab",
-        "name": "First",
-        "contentUrl": "",
-        "scopes": ["personal"]
+        "configurationUrl": "https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/config",
+        "canUpdateConfiguration": true,
+        "scopes": [
+          "team",
+          "groupChat"
+        ],
+        "context": [
+            "meetingSidePanel"
+        ]
+        
       }
     ],
+    
     "permissions": ["identity"]
   }
   

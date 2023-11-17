@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Config
+    </title>
+
+</head>
+<body>
+    <h1>CONFIG PAGE :)</h1>
+    <p>Choose tab1 or tab2 you want</p>
+    <button id = 'tab1-btn'>Tab 1</button>
+    <button id = 'tab2-btn'>Tab 2</button>
+</body>
+</html>
+
+<script 
+src="https://res.cdn.office.net/teams-js/2.10.1/js/MicrosoftTeams.min.js"
+integrity="sha384-Tc1x2xjzm4vRqLV4l416qPm+i7t8ujpxrioZEjRCNP7g/gQNDW41TB1SpVkQxowY"
+crossorigin="anonymous"
+></script>
+
+<script type = 'module'>
+    await microsoftTeams.app.initialize()
+    console.log('HELLO WORLD')
+
+    function setTheme(theme) {
+        if (theme) {        
+            document.body.className =
+                'theme-' + (theme === 'default' ? 'light' : theme);
+        }
+    }
+
+    microsoftTeams.getContext(function (context) {
+        if (context && context.theme) {
+            setTheme(context.theme);
+        }
+    });
+    
+    microsoftTeams.registerOnThemeChangeHandler(function (theme) {
+        setTheme(theme);
+    });
+
+    const page1 = () => {
+        microsoftTeams.pages.config.setValidityState(true)
+
+        microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+            const configPromise = microsoftTeams.pages.config.setConfig({
+                websiteUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home",
+                contentUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home",
+                entityId:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home"
+            })
+
+            const serverPromise = fetch(
+                'api/demo/getConfig',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body: JSON.stringify({type: "page1"})
+                }                
+            )
+            
+            configPromise.then((result) => {
+                saveEvent.notifySuccess()
+            }).catch(error => {
+                console.log(error)
+                saveEvent.notifyFailure('Fail occured ;/', error)
+            })
+
+            serverPromise.then(data =>{
+                saveEvent.notifySuccess()
+            }).catch(error => {
+                console.log('error', error)
+                saveEvent.notifyFailure('Issue: ', error)
+            })
+
+        })
+    }
+
+    const page2 = () => {
+        microsoftTeams.pages.config.setValidityState(true)
+
+        microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+            
+            const configPromise = microsoftTeams.pages.config.setConfig({
+                websiteUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home1",
+                contentUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home1",
+                entityId:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home1"
+            })
+
+            const serverPromise = fetch(
+                'api/demo/getConfig',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body: JSON.stringify({type: "page2"})
+                }                
+            )
+            
+            configPromise.then((result) => {
+                saveEvent.notifySuccess()
+            }).catch(error => {
+                console.log(error)
+                saveEvent.notifyFailure('Fail occured ;/', error)
+            })
+
+            serverPromise.then(data =>{
+                saveEvent.notifySuccess()
+            }).catch(error => {
+                console.log('error', error)
+                saveEvent.notifyFailure('Issue: ', error)
+            })
+
+       })
+    }
+
+    document.getElementById('tab1-btn').addEventListener('click', page1)
+    document.getElementById('tab2-btn').addEventListener('click', page2)
+</script>

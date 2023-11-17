@@ -11,7 +11,7 @@ const getUserData = () => {
         if(result.ok)
             return result.json()
     }).then(data => {
-        console.log('response from server' + data.city)
+        console.log('response from server:', data.city)
         const log = document.getElementById('result-span')
         log.textContent = `Result: ${data.city}`
         log.style.display = 'inline'
