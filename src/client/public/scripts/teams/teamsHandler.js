@@ -1,12 +1,18 @@
 const main = async() => {
-    'use strict';
+
     await microsoftTeams.app.initialize();
-    
-    await microsoftTeams.pages.config.setValidityState(true)
 
     const context = await microsoftTeams.app.getContext();
 
+    const data = {teamName: context.team.displayName, meetingId: context.meeting.id, channelName: context.channel.displayName, user: context.user.userPrincipalName}
+
+    //displays data from the context within a <p>
+    document.getElementById('meeting-data').textContent += "team name: " + data.teamName
+    document.getElementById('meeting-data').textContent += "channel name: " + data.channelName
+    document.getElementById('meeting-data').textContent += "user: " + data.user
+
     const url = 'api/demo/sendData'
+    
     fetch(url, {
         method: "POST",
         headers: {
@@ -14,5 +20,8 @@ const main = async() => {
         },
         body: JSON.stringify(context)
     })
+
 }
+
 main()
+

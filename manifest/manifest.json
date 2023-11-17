@@ -22,35 +22,23 @@
       "color": "color.png",
       "outline": "outline.png"
     },
-    "accentColor": "#00bfff",
-    "tabs": [
 
-    ],
+    "accentColor": "#00bfff",
     "configurableTabs": [
       {
-        "configurationUrl": "https://a194-2a01-5a8-303-43dd-ada6-5b14-8426-7e3d.ngrok-free.app/config",
+        "configurationUrl": "https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/config",
         "canUpdateConfiguration": true,
         "scopes": [
           "team",
           "groupChat"
+        ],
+        "context": [
+            "meetingSidePanel"
         ]
+        
       }
     ],
-    "staticTabs": [
-      {
-        "entityId": "firstTab",
-        "name": "First",
-        "contentUrl": "https://a194-2a01-5a8-303-43dd-ada6-5b14-8426-7e3d.ngrok-free.app/home",
-        "websiteUrl": "https://a194-2a01-5a8-303-43dd-ada6-5b14-8426-7e3d.ngrok-free.app/home",
-        "scopes": ["personal", "team"]
-      },
-
-      {
-        "entityId": "",
-        "name":"",
-        "scopes": [""]
-      }
-    ],
+    
     "permissions": ["identity"]
   }
   

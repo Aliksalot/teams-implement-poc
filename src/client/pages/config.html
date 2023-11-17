@@ -10,7 +10,9 @@
 </head>
 <body>
     <h1>CONFIG PAGE :)</h1>
-    <button id = 'init-button'>Click me!</button>
+    <p>Choose tab1 or tab2 you want</p>
+    <button id = 'tab1-btn'>Tab 1</button>
+    <button id = 'tab2-btn'>Tab 2</button>
 </body>
 </html>
 
@@ -23,6 +25,7 @@ crossorigin="anonymous"
 <script type = 'module'>
     await microsoftTeams.app.initialize()
     console.log('HELLO WORLD')
+
     function setTheme(theme) {
         if (theme) {        
             document.body.className =
@@ -40,24 +43,81 @@ crossorigin="anonymous"
         setTheme(theme);
     });
 
-    const init = () => {
+    const page1 = () => {
         microsoftTeams.pages.config.setValidityState(true)
 
         microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
             const configPromise = microsoftTeams.pages.config.setConfig({
-                websiteUrl:"https://a194-2a01-5a8-303-43dd-ada6-5b14-8426-7e3d.ngrok-free.app/home",
-                contentUrl:"https://a194-2a01-5a8-303-43dd-ada6-5b14-8426-7e3d.ngrok-free.app/home",
-                entityId:"https://a194-2a01-5a8-303-43dd-ada6-5b14-8426-7e3d.ngrok-free.app/home"
+                websiteUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home",
+                contentUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home",
+                entityId:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home"
             })
 
+            const serverPromise = fetch(
+                'api/demo/getConfig',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body: JSON.stringify({type: "page1"})
+                }                
+            )
+            
             configPromise.then((result) => {
                 saveEvent.notifySuccess()
             }).catch(error => {
                 console.log(error)
                 saveEvent.notifyFailure('Fail occured ;/', error)
             })
+
+            serverPromise.then(data =>{
+                saveEvent.notifySuccess()
+            }).catch(error => {
+                console.log('error', error)
+                saveEvent.notifyFailure('Issue: ', error)
+            })
+
+        })
+    }
+
+    const page2 = () => {
+        microsoftTeams.pages.config.setValidityState(true)
+
+        microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+            
+            const configPromise = microsoftTeams.pages.config.setConfig({
+                websiteUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home1",
+                contentUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home1",
+                entityId:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home1"
+            })
+
+            const serverPromise = fetch(
+                'api/demo/getConfig',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body: JSON.stringify({type: "page2"})
+                }                
+            )
+            
+            configPromise.then((result) => {
+                saveEvent.notifySuccess()
+            }).catch(error => {
+                console.log(error)
+                saveEvent.notifyFailure('Fail occured ;/', error)
+            })
+
+            serverPromise.then(data =>{
+                saveEvent.notifySuccess()
+            }).catch(error => {
+                console.log('error', error)
+                saveEvent.notifyFailure('Issue: ', error)
+            })
+
        })
     }
 
-    document.getElementById('init-button').addEventListener('click', init)
+    document.getElementById('tab1-btn').addEventListener('click', page1)
+    document.getElementById('tab2-btn').addEventListener('click', page2)
 </script>

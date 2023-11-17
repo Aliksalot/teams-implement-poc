@@ -9,6 +9,10 @@ router.get('/home', (req, res) => {
     res.sendFile(path.join(pagesPath, 'index.html'))
 })
 
+router.get('/home1', (req, res) => {
+    res.sendFile(path.join(pagesPath, 'index1.html'))
+})
+
 router.get('/config', (req, res) => {
     res.sendFile(path.join(pagesPath, 'config.html'))
 })
