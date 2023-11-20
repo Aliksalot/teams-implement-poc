@@ -43,14 +43,14 @@ crossorigin="anonymous"
         setTheme(theme);
     });
 
-    const page1 = () => {
+    const registerConfig = (url) => {
         microsoftTeams.pages.config.setValidityState(true)
 
         microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
             const configPromise = microsoftTeams.pages.config.setConfig({
-                websiteUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home",
-                contentUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home",
-                entityId:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home"
+                websiteUrl:url,
+                contentUrl:url,
+                entityId:url
             })
 
             const serverPromise = fetch(
@@ -80,42 +80,17 @@ crossorigin="anonymous"
         })
     }
 
+    const page1 = () => {
+
+        const configPageUrl = "https://my-website.com/page1"
+        
+        registerConfig(configPageUrl)
+    }
+
     const page2 = () => {
-        microsoftTeams.pages.config.setValidityState(true)
-
-        microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
-            
-            const configPromise = microsoftTeams.pages.config.setConfig({
-                websiteUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home1",
-                contentUrl:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home1",
-                entityId:"https://2944-2a01-5a8-303-43dd-2891-f7ba-e3d5-74b0.ngrok-free.app/home1"
-            })
-
-            const serverPromise = fetch(
-                'api/demo/getConfig',{
-                    method: 'POST',
-                    headers: {
-                        'Content-Type' : 'application/json'
-                    },
-                    body: JSON.stringify({type: "page2"})
-                }                
-            )
-            
-            configPromise.then((result) => {
-                saveEvent.notifySuccess()
-            }).catch(error => {
-                console.log(error)
-                saveEvent.notifyFailure('Fail occured ;/', error)
-            })
-
-            serverPromise.then(data =>{
-                saveEvent.notifySuccess()
-            }).catch(error => {
-                console.log('error', error)
-                saveEvent.notifyFailure('Issue: ', error)
-            })
-
-       })
+        const configPageUrl = "https://my-website.com/page2"
+        
+        registerConfig(configPageUrl)
     }
 
     document.getElementById('tab1-btn').addEventListener('click', page1)
