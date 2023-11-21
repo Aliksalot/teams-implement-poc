@@ -5,11 +5,11 @@ const path = require('path')
 
 const pagesPath = path.join(__dirname, '../client/pages')
 
-router.get('/home', (req, res) => {
+router.get('/page1', (req, res) => {
     res.sendFile(path.join(pagesPath, 'index.html'))
 })
 
-router.get('/home1', (req, res) => {
+router.get('/page2', (req, res) => {
     res.sendFile(path.join(pagesPath, 'index1.html'))
 })
 

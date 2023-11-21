@@ -22,7 +22,10 @@ integrity="sha384-Tc1x2xjzm4vRqLV4l416qPm+i7t8ujpxrioZEjRCNP7g/gQNDW41TB1SpVkQxo
 crossorigin="anonymous"
 ></script>
 
+<script src="scripts/teams/constants.js"></script>
+
 <script type = 'module'>
+
     await microsoftTeams.app.initialize()
     console.log('HELLO WORLD')
 
@@ -43,8 +46,10 @@ crossorigin="anonymous"
         setTheme(theme);
     });
 
-    const registerConfig = (url) => {
+    const registerConfig = async(url) => {
         microsoftTeams.pages.config.setValidityState(true)
+
+        await saveCreatorInLocal()
 
         microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
             const configPromise = microsoftTeams.pages.config.setConfig({
@@ -80,16 +85,26 @@ crossorigin="anonymous"
         })
     }
 
+    const saveCreatorInLocal = async() => {
+        const context = await microsoftTeams.app.getContext()
+        console.log('saving creator in localstorage')
+        localStorage.setItem('creator', context.user.userPrincipalName)
+    }
+
     const page1 = () => {
 
-        const configPageUrl = "https://my-website.com/page1"
+        const configPageUrl = `${srcUrl}/page1`
         
+        saveCreatorInLocal()
+
         registerConfig(configPageUrl)
     }
 
     const page2 = () => {
-        const configPageUrl = "https://my-website.com/page2"
+        const configPageUrl = `${srcUrl}/page2`
         
+        saveCreatorInLocal()
+
         registerConfig(configPageUrl)
     }
 

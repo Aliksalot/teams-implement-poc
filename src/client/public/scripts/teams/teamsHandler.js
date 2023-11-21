@@ -11,6 +11,8 @@ const main = async() => {
     document.getElementById('meeting-data').textContent += "channel name: " + data.channelName
     document.getElementById('meeting-data').textContent += "user: " + data.user
 
+    document.getElementById('cached-data').textContent = `Cached Data: ${localStorage.getItem('creator')}` 
+
     const url = 'api/demo/sendData'
     
     fetch(url, {
