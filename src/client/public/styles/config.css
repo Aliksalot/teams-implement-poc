@@ -2,25 +2,27 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: white;
 }
 
 main{
     display: flex;
 
     flex-direction: column;
+
+    align-items: center;
 }
 
 .site-logo{
     width: 10vh;
 
-    margin: 2vh;
+    margin: 0.5vh;    
 }
 
 .site-logo-link{
     width: min-content;
     height: min-content;
+
+    align-self: flex-start;
 }
 
 .type-card-cnt{
@@ -56,7 +58,6 @@ main{
 
 .card-desc-p{
     width: 80%;
-
 }
 
 .start-card-btn{
@@ -68,8 +69,9 @@ main{
     border-radius: 0.7rem;
 
     color: white;
-    font-weight: bolder;
-    font-size: 0.8rem;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
 
     background-color: rgb(1, 111, 160);
 
@@ -77,5 +79,20 @@ main{
 }
 
 .start-card-btn:hover{
-
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
 }       
+
+.diff-quest-redirect-cnt{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Figtree', sans-serif;
+}
+
+.diff-quest-redirect{
+    color: black;   
+    font-family: 'Figtree', sans-serif;
+}
+
+.diff-quest-redirect:hover{
+    text-shadow: 1px black;
+}

@@ -17,4 +17,12 @@ router.get('/config', (req, res) => {
     res.sendFile(path.join(pagesPath, 'config.html'))
 })
 
+router.get('/config-other', (req, res) => {
+    res.sendFile(path.join(pagesPath, 'config-other.html'))
+})
+
+router.get('/loading', (req, res) => {
+    res.sendFile(path.join(pagesPath, 'loading.html'))
+})
+
 module.exports = router
