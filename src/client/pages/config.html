@@ -7,12 +7,29 @@
         Config
     </title>
 
+    <link rel="stylesheet" href="styles/config.css">
 </head>
 <body>
-    <h1>CONFIG PAGE :)</h1>
-    <p>Choose tab1 or tab2 you want</p>
-    <button id = 'tab1-btn'>Tab 1</button>
-    <button id = 'tab2-btn'>Tab 2</button>
+
+    <div class = 'type-card-cnt'>
+        
+        <img src="images/icon.png" alt="" class = 'card-img'>
+
+        <p class = 'card-type-p'>Start Meeting Follow-Up</p>
+        
+        <div class = 'card-desc-p-cnt'>
+            <p class = 'card-desc-p'>> Improved meeting results</p>
+            <p class = 'card-desc-p'>> Continuous increase in meeting efficiency</p>
+            <p class = 'card-desc-p'>> Strengthening the team culture</p>
+            <p class = 'card-desc-p'>> More commitment to implementation</p>    
+        </div>
+        
+
+        <button class = 'start-card-btn' id = 'start-btn'>
+            Start Meeting Follow-Up
+        </button>
+    </div>
+    
 </body>
 </html>
 
@@ -46,68 +63,50 @@ crossorigin="anonymous"
         setTheme(theme);
     });
 
+    const setAdmin = (admin) => {
+        localStorage.setItem('admin', admin)
+    }
+
     const registerConfig = async(url) => {
         microsoftTeams.pages.config.setValidityState(true)
 
-        await saveCreatorInLocal()
-
-        microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
+        microsoftTeams.pages.config.registerOnSaveHandler(async(saveEvent) => {
             const configPromise = microsoftTeams.pages.config.setConfig({
                 websiteUrl:url,
                 contentUrl:url,
                 entityId:url
             })
 
-            const serverPromise = fetch(
-                'api/demo/getConfig',{
-                    method: 'POST',
-                    headers: {
-                        'Content-Type' : 'application/json'
-                    },
-                    body: JSON.stringify({type: "page1"})
-                }                
-            )
-            
             configPromise.then((result) => {
                 saveEvent.notifySuccess()
             }).catch(error => {
                 console.log(error)
-                saveEvent.notifyFailure('Fail occured ;/', error)
+                saveEvent.notifyFailure('Fail occured', error)
             })
 
-            serverPromise.then(data =>{
-                saveEvent.notifySuccess()
-            }).catch(error => {
-                console.log('error', error)
-                saveEvent.notifyFailure('Issue: ', error)
-            })
+            const context = await microsoftTeams.app.getContext();
 
+            const email = context.user.userPrincipalName
+
+            console.log("admin's email: ",email)
+
+            setAdmin(email)
         })
     }
 
-    const saveCreatorInLocal = async() => {
-        const context = await microsoftTeams.app.getContext()
-        console.log('saving creator in localstorage')
-        localStorage.setItem('creator', context.user.userPrincipalName)
-    }
 
-    const page1 = () => {
-
-        const configPageUrl = `${srcUrl}/page1`
-        
-        saveCreatorInLocal()
+    const page = () => {
+        const configPageUrl = `${srcUrl}/config`
 
         registerConfig(configPageUrl)
     }
 
-    const page2 = () => {
-        const configPageUrl = `${srcUrl}/page2`
+    const callQck = () => {
         
-        saveCreatorInLocal()
-
-        registerConfig(configPageUrl)
+        const url = `http://qck.app/ms-teams/create-questionnaire/meeting-follow-up/[teamsname]/`
+        
+        registerConfig(url)
     }
 
-    document.getElementById('tab1-btn').addEventListener('click', page1)
-    document.getElementById('tab2-btn').addEventListener('click', page2)
+    document.getElementById('start-btn').addEventListener('click', page)
 </script>
