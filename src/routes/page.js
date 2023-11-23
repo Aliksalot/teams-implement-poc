@@ -25,4 +25,8 @@ router.get('/loading', (req, res) => {
     res.sendFile(path.join(pagesPath, 'loading.html'))
 })
 
+router.get('/about', (req, res) => {
+    res.sendFile(path.join(pagesPath, 'about.html'))
+})
+
 module.exports = router

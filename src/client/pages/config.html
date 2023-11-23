@@ -53,7 +53,6 @@
 
     </main>
     
-    
 </body>
 </html>
 
@@ -66,71 +65,4 @@ crossorigin="anonymous"
 <script src="scripts/teams/constants.js"></script>
 
 <script type = 'module'>
-
-    await microsoftTeams.app.initialize()
-    console.log('HELLO WORLD')
-
-    function setTheme(theme) {
-        if (theme) {        
-            document.body.className =
-                'theme-' + (theme === 'default' ? 'light' : theme);
-        }
-    }
-
-    microsoftTeams.getContext(function (context) {
-        if (context && context.theme) {
-            setTheme(context.theme);
-        }
-    });
-    
-    microsoftTeams.registerOnThemeChangeHandler(function (theme) {
-        setTheme(theme);
-    });
-
-    const setAdmin = (admin) => {
-        localStorage.setItem('admin', admin)
-    }
-
-    const registerConfig = async(url) => {
-        microsoftTeams.pages.config.setValidityState(true)
-
-        microsoftTeams.pages.config.registerOnSaveHandler(async(saveEvent) => {
-            const configPromise = microsoftTeams.pages.config.setConfig({
-                websiteUrl:url,
-                contentUrl:url,
-                entityId:url
-            })
-
-            configPromise.then((result) => {
-                saveEvent.notifySuccess()
-            }).catch(error => {
-                console.log(error)
-                saveEvent.notifyFailure('Fail occured', error)
-            })
-
-            const context = await microsoftTeams.app.getContext();
-
-            const email = context.user.userPrincipalName
-
-            console.log("admin's email: ",email)
-
-            setAdmin(email)
-        })
-    }
-
-
-    const page = () => {
-        const configPageUrl = `${srcUrl}/config`
-
-        registerConfig(configPageUrl)
-    }
-
-    const callQck = () => {
-        
-        const url = `http://qck.app/ms-teams/create-questionnaire/meeting-follow-up/[teamsname]/`
-        
-        registerConfig(url)
-    }
-
-    document.getElementById('start-btn').addEventListener('click', page)
 </script>

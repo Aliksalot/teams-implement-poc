@@ -1,0 +1,75 @@
+main{
+    font-family: 'Figtree', sans-serif;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.site-logo-link{
+    width: min-content;
+    height: min-content;
+
+    margin: 2vh;
+
+    justify-self: flex-start;
+}
+
+.site-logo{
+    width: 6rem;
+}
+
+.capt-p{
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    text-align: center;
+    color: black;
+}
+
+.eula-btn{
+    background-color: rgb(1, 111, 160);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+
+    width: fit-content;
+
+    border: none;
+    border-radius: 0.7rem;
+
+    cursor: pointer;
+
+    color: white;
+}
+
+.eula-btn p a{
+    color: white;
+}
+
+.eula-btn:hover{
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.links-cnt{
+    display: flex;
+
+    width: 90%;
+    
+    margin: 2rem;
+}
+
+.links-cnt a{
+    margin: auto;
+        
+    color: black;
+    
+    font-size: 0.7rem;
+}
