@@ -10,12 +10,14 @@ main{
     flex-direction: column;
 
     align-items: center;
+    
+    background-color: white;
 }
 
 .site-logo{
-    width: 10vh;
+    width: 2.5rem;
 
-    margin: 0.5vh;    
+    margin: 0.5rem;    
 }
 
 .site-logo-link{
@@ -72,7 +74,7 @@ main{
     color: white;
     font-family: 'Figtree', sans-serif;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
 
     background-color: rgb(1, 111, 160);
 
@@ -88,6 +90,8 @@ main{
     flex-direction: row;
     font-family: 'Figtree', sans-serif;
     text-align: center;
+
+    width: 80%;
 }
 
 .diff-quest-redirect{

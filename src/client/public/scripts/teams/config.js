@@ -41,9 +41,10 @@ await microsoftTeams.app.initialize()
 
 
     const eulaAccept = () => {
-        const configPageUrl = `${srcUrl}/about`
+        const configPageUrl = `${srcUrl}/config`
 
         registerConfig(configPageUrl)
     }
 
+    eulaAccept()
     document.getElementById('eula-btn').addEventListener('click', eulaAccept)

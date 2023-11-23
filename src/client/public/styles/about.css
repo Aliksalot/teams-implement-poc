@@ -6,56 +6,43 @@ main{
     justify-content: center;
     align-items: center;
 
+    background-color: white;
+
 }
 
 .site-logo-link{
     width: min-content;
     height: min-content;
 
-    margin: 2vh;
+    margin-left: 3vh;
+    margin-top: 3vh;
 
     justify-self: flex-start;
+    align-self: flex-start
 }
 
 .site-logo{
-    width: 6rem;
+    width: 4rem;
 }
 
 .capt-p{
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    font-weight: 800;
+
+    width: 90%;
+
+    text-align: center;
+    color: #222;
+}
+
+.about-capt-p{
+    width: 80%;
+
+    font-size: 0.9rem;
     font-weight: 600;
 
     text-align: center;
-    color: black;
-}
-
-.eula-btn{
-    background-color: rgb(1, 111, 160);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    padding: 1.5rem;
-    margin-top: 1.5rem;
-
-    width: fit-content;
-
-    border: none;
-    border-radius: 0.7rem;
-
-    cursor: pointer;
-
-    color: white;
-}
-
-.eula-btn p a{
-    color: white;
-}
-
-.eula-btn:hover{
-    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+    color: #222;
 }
 
 .links-cnt{
@@ -63,13 +50,25 @@ main{
 
     width: 90%;
     
+    border-radius: 1rem;
+
     margin: 2rem;
+    background-color: rgb(1, 111, 160);
 }
 
 .links-cnt a{
     margin: auto;
         
-    color: black;
+    color: white;
     
     font-size: 0.7rem;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.eula-info{
+    
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
