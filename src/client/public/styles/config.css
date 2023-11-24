@@ -15,7 +15,7 @@ main{
 }
 
 .site-logo{
-    width: 2.5  rem;
+    width: 3rem;
 
     margin: 0.5rem;    
 }
@@ -27,19 +27,27 @@ main{
     align-self: flex-start;
 }
 
+.start-btn-big{
+    font-size: 1rem;
+}
+
+
+.start-btn-small{
+    font-size: 0.8rem;
+}
+
 .start-card-btn{
     margin-top: 0.4rem;
     margin-bottom: 0.4rem;
     width: 80%;
-    padding: 1.5rem;
+    padding: 1rem;
 
     border: none;
     border-radius: 0.7rem;
 
     color: white;
     font-family: 'Figtree', sans-serif;
-    font-weight: 600;
-    font-size: 0.8rem;
+    font-weight: 400;
 
     background-color: rgb(1, 111, 160);
 
