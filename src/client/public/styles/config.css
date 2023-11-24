@@ -1,0 +1,74 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    
+    background-color: white;
+}
+
+.site-logo{
+    width: 3rem;
+
+    margin: 0.5rem;    
+}
+
+.site-logo-link{
+    width: min-content;
+    height: min-content;
+
+    align-self: flex-start;
+}
+
+.start-btn-big{
+    font-size: 1rem;
+}
+
+
+.start-btn-small{
+    font-size: 0.8rem;
+}
+
+.start-card-btn{
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+    width: 80%;
+    padding: 1rem;
+
+    border: none;
+    border-radius: 0.7rem;
+
+    color: white;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+
+    background-color: rgb(1, 111, 160);
+
+    cursor: pointer;
+}
+
+.start-card-btn:hover{
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+}       
+
+.diff-quest-redirect-cnt{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Figtree', sans-serif;
+    text-align: center;
+
+    width: 80%;
+}
+
+.diff-quest-redirect{
+    color: black;   
+    font-family: 'Figtree', sans-serif;
+    font-size: 0.9rem;
+}

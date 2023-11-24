@@ -7,12 +7,35 @@
         Config
     </title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/config.css">
 </head>
 <body>
-    <h1>CONFIG PAGE :)</h1>
-    <p>Choose tab1 or tab2 you want</p>
-    <button id = 'tab1-btn'>Tab 1</button>
-    <button id = 'tab2-btn'>Tab 2</button>
+        
+    <main>
+        <a href="#" class = 'site-logo-link'>
+            <img class = 'site-logo' src="images/logo.png" alt="qck.app">
+        </a>
+                
+        <button class = 'start-card-btn start-btn-big' id = 'start-follow-up'>
+            Start Meeting Follow-Up
+        </button>
+
+        <div class = 'diff-quest-redirect-cnt'>
+            <p>Want a different questionnaire? 
+                <a class = 'diff-quest-redirect' href="config-other">
+                    Click here!
+                </a>
+            </p>
+            
+        </div>
+        
+
+    </main>
+    
 </body>
 </html>
 
@@ -25,89 +48,4 @@ crossorigin="anonymous"
 <script src="scripts/teams/constants.js"></script>
 
 <script type = 'module'>
-
-    await microsoftTeams.app.initialize()
-    console.log('HELLO WORLD')
-
-    function setTheme(theme) {
-        if (theme) {        
-            document.body.className =
-                'theme-' + (theme === 'default' ? 'light' : theme);
-        }
-    }
-
-    microsoftTeams.getContext(function (context) {
-        if (context && context.theme) {
-            setTheme(context.theme);
-        }
-    });
-    
-    microsoftTeams.registerOnThemeChangeHandler(function (theme) {
-        setTheme(theme);
-    });
-
-    const registerConfig = async(url) => {
-        microsoftTeams.pages.config.setValidityState(true)
-
-        await saveCreatorInLocal()
-
-        microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
-            const configPromise = microsoftTeams.pages.config.setConfig({
-                websiteUrl:url,
-                contentUrl:url,
-                entityId:url
-            })
-
-            const serverPromise = fetch(
-                'api/demo/getConfig',{
-                    method: 'POST',
-                    headers: {
-                        'Content-Type' : 'application/json'
-                    },
-                    body: JSON.stringify({type: "page1"})
-                }                
-            )
-            
-            configPromise.then((result) => {
-                saveEvent.notifySuccess()
-            }).catch(error => {
-                console.log(error)
-                saveEvent.notifyFailure('Fail occured ;/', error)
-            })
-
-            serverPromise.then(data =>{
-                saveEvent.notifySuccess()
-            }).catch(error => {
-                console.log('error', error)
-                saveEvent.notifyFailure('Issue: ', error)
-            })
-
-        })
-    }
-
-    const saveCreatorInLocal = async() => {
-        const context = await microsoftTeams.app.getContext()
-        console.log('saving creator in localstorage')
-        localStorage.setItem('creator', context.user.userPrincipalName)
-    }
-
-    const page1 = () => {
-
-        const configPageUrl = `${srcUrl}/page1`
-        
-        saveCreatorInLocal()
-
-        registerConfig(configPageUrl)
-    }
-
-    const page2 = () => {
-        const configPageUrl = `${srcUrl}/page2`
-        
-        saveCreatorInLocal()
-
-        registerConfig(configPageUrl)
-    }
-
-    document.getElementById('tab1-btn').addEventListener('click', page1)
-    document.getElementById('tab2-btn').addEventListener('click', page2)
 </script>

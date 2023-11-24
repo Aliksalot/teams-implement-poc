@@ -1,0 +1,20 @@
+main{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    width: 8rem;
+}
+
+.loading-p{
+    font-family: 'Figtree', sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.loading-gif{
+    width: 10rem;
+}

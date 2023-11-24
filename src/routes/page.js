@@ -5,16 +5,28 @@ const path = require('path')
 
 const pagesPath = path.join(__dirname, '../client/pages')
 
-router.get('/page1', (req, res) => {
-    res.sendFile(path.join(pagesPath, 'index.html'))
+router.get('/survey', (req, res) => {
+    res.sendFile(path.join(pagesPath, 'survey.html'))
 })
 
-router.get('/page2', (req, res) => {
-    res.sendFile(path.join(pagesPath, 'index1.html'))
+router.get('/admin-panel', (req, res) => {
+    res.sendFile(path.join(pagesPath, 'admin-panel.html'))
 })
 
 router.get('/config', (req, res) => {
     res.sendFile(path.join(pagesPath, 'config.html'))
+})
+
+router.get('/config-other', (req, res) => {
+    res.sendFile(path.join(pagesPath, 'config-other.html'))
+})
+
+router.get('/loading', (req, res) => {
+    res.sendFile(path.join(pagesPath, 'loading.html'))
+})
+
+router.get('/about', (req, res) => {
+    res.sendFile(path.join(pagesPath, 'about.html'))
 })
 
 module.exports = router
