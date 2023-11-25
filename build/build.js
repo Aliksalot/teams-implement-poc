@@ -22,6 +22,8 @@ const options = [
     "Build with old url"
 ]
 
+const errors = []
+
 const printMenu = () => {
     console.log()
     options.forEach((option, ind) => {
@@ -47,7 +49,17 @@ const createZip = () => {
     const outputZipStream = fs.createWriteStream(manifestZipPath);
 
     outputZipStream.on('close', () => {
-        console.log('build succesfull! ')
+        if(errors.length === 0){
+            console.log('Build Success! ')
+        }else{
+            errors.forEach(err => {
+                console.error(`\n${err}`);
+            })
+
+            console.log("Build failed! Check errors ")
+        }
+
+
         process.exit(0)
     })
 
@@ -71,7 +83,7 @@ const replaceOld = (newUrl) => {
 
     fs.readFile(constantsJsPath, 'utf8', (err, data) => {
         if(err) {
-            console.error(err)
+            errors.push(err)
             return
         }
 
@@ -79,7 +91,7 @@ const replaceOld = (newUrl) => {
         
         fs.writeFile(constantsJsPath, updatedData, 'utf-8', (err) => {
             if(err) {
-                console.error(err)
+                errors.push(err)
                 return
             }
         })
@@ -87,7 +99,7 @@ const replaceOld = (newUrl) => {
 
     fs.readFile(manifestPath, 'utf-8', (err, data) => {
         if(err){
-            console.error(err);
+            errors.push(err)
             return
         }
 
@@ -95,7 +107,7 @@ const replaceOld = (newUrl) => {
         
         fs.writeFile(manifestPath, updatedData, 'utf-8', (err) => {
             if(err) {
-                console.error(err)
+                errors.push(err)
                 return
             }
         })
@@ -114,9 +126,6 @@ const functionsMap = {
     "2" : createZip
 }
 
-
-
-
 const start = () => {
     printMenu()
     rl.question('Choose option', (input) => {
@@ -126,8 +135,6 @@ const start = () => {
             console.log('Invalid input! \n')
             return start()
         }
-
-        console.log(functionsMap[input])
         return functionsMap[input]()
     })
 
