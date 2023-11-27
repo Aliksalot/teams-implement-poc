@@ -26,7 +26,7 @@
     "accentColor": "#00bfff",
     "configurableTabs": [
       {
-        "configurationUrl": "https://e52c-94-155-19-3.ngrok-free.app/about",
+        "configurationUrl": "https://firefly-powerful-ultimately.ngrok-free.app/about",
         "canUpdateConfiguration": true,
         "scopes": [
           "team",

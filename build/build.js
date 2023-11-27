@@ -32,8 +32,6 @@ const printMenu = () => {
     console.log('Do CTRL + C to exit \n')
 }
 
-let run = true;
-
 const deleteOldManifest = () => {
     if(fs.existsSync(manifestZipPath)){
         fs.unlink(manifestZipPath, (err) => {})
@@ -49,6 +47,7 @@ const createZip = () => {
     const outputZipStream = fs.createWriteStream(manifestZipPath);
 
     outputZipStream.on('close', () => {
+
         if(errors.length === 0){
             console.log('Build Success! ')
         }else{
@@ -58,7 +57,6 @@ const createZip = () => {
 
             console.log("Build failed! Check errors ")
         }
-
 
         process.exit(0)
     })
@@ -73,10 +71,9 @@ const createZip = () => {
 
     archive.finalize()
 
-    run = false;
 }
 
-
+ 
 const replaceOld = (newUrl) => {
 
     const ngrokUrlPattern = /(https:\/\/[^\s]*\.ngrok-free\.app[^\s]*)/
@@ -125,10 +122,10 @@ const functionsMap = {
     "1" : enterNewUrl,
     "2" : createZip
 }
-
+ 
 const start = () => {
     printMenu()
-    rl.question('Choose option', (input) => {
+    rl.question('Choose option: ', (input) => {
         input = input.trim()[0]
         
         if(!Object.keys(functionsMap).includes(input)){

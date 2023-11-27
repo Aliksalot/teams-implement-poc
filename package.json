@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startl": "clear && node ./src/server.js",
-    "startw": "cls && node ./src/server.js"
+    "startw": "cls && node ./src/server.js",  
+    "tunnel": "ngrok http --domain=firefly-powerful-ultimately.ngrok-free.app 3000",
+    "build": "cd build && node build.js"
   },
   "keywords": [],
   "author": "",
